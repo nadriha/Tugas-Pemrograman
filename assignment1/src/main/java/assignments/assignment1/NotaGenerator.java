@@ -168,6 +168,7 @@ public class NotaGenerator {
     public static String generateNota(String id, String paketLaundry, int berat, String tanggalTerimaStr){
         //membuat object formatter untuk mengubah format tanggal
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
         //mengubah tanggal yang diinput user menjadi date-time object
         LocalDate tanggalTerima = LocalDate.parse(tanggalTerimaStr, formatter);
 
