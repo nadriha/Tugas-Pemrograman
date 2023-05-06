@@ -106,4 +106,5 @@ public class MainMenu {
         System.out.println("4. Exit");
         System.out.print("Apa yang ingin Anda lakukan hari ini? ");
     }
+    
 }

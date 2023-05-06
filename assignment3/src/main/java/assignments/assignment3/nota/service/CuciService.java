@@ -15,7 +15,6 @@ public class CuciService implements LaundryService{
 
     @Override
     public long getHarga(int berat) {
-        // TODO
         return 0;
     }
 

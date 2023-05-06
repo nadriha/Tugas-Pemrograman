@@ -149,7 +149,7 @@ public class MainMenu {
         }
     }
 
-    //method case 5 = List Member
+    //method case 5 = Ambil Cucian
     private static void handleAmbilCucian() {
         System.out.println("Masukan ID nota yang akan diambil:"); //meminta input id nota user
         String idNota = input.nextLine();

@@ -7,7 +7,7 @@ import assignments.assignment3.user.Member;
 import static assignments.assignment3.nota.NotaManager.notaList;
 
 public class EmployeeSystem extends SystemCLI {
-
+    
     /**
      * Membuat object baru EmployeeSystem dan mendaftarkan Employee pada CuciCuci
      */
@@ -29,7 +29,12 @@ public class EmployeeSystem extends SystemCLI {
     @Override
     protected boolean processChoice(int choice) {
         boolean logout = false;
-        // TODO:
+        switch (choice) {
+            // case 1 -> cuciTime();
+            // case 2 -> displayListlNota();
+            case 3 -> logout = true;
+            default -> System.out.println("Pilihan tidak valid, silakan coba lagi.");
+        }
         return logout;
     }
 
