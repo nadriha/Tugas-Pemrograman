@@ -49,7 +49,7 @@ public class EmployeeSystem extends SystemCLI {
     }
 
     public void cuciTime(){
-        System.out.println("Stand back! "+ loginMember.getNama() +" beginning to nyuci!\n");
+        System.out.println("Stand back! "+ loginMember.getNama() +" beginning to nyuci!");
         for (Nota nota : notaList){
             System.out.println(nota.kerjakan());
         }
@@ -59,5 +59,6 @@ public class EmployeeSystem extends SystemCLI {
         for (Nota nota : notaList){
             System.out.println("Nota "+nota.getIdNota()+" : "+nota.getNotaStatus());
         }
+        System.out.println();
     }
 }

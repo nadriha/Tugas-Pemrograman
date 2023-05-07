@@ -74,7 +74,6 @@ public class MemberSystem extends SystemCLI {
 
                     } else { //error message jika input user tidak sesuai paket yang tersedia
                             System.out.println("Paket "+paketLaundryCheck+" tidak diketahui.");
-                            System.out.println("[ketik ? untuk mencari tahu jenis paket]");
                     } 
                 }
 
@@ -100,9 +99,7 @@ public class MemberSystem extends SystemCLI {
             System.out.println("Hanya tambah 1000 / kg");
             System.out.print("[Ketik x untuk tidak mau]: ");
             String setrikaUser = input.nextLine();
-            System.out.println(setrikaUser);
             if (!setrikaUser.equals("x")){
-                System.out.println("setrika");
                 SetrikaService setrika = new SetrikaService();
                 nota.addService(setrika);
                 }

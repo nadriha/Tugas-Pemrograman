@@ -12,7 +12,7 @@ public class CuciService implements LaundryService{
     @Override
     public boolean isDone() {
         if (doWorkCounter != 0){
-        return true;
+            return true;
         } else {
             return false;
         }

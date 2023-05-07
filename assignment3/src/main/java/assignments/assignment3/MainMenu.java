@@ -44,7 +44,7 @@ public class MainMenu {
                 case 2 -> register();
                 case 3 -> toNextDay();
                 case 4 -> exit = true;
-                default -> System.out.println("Pilihan tidak valid, silakan coba lagi.");
+                default -> System.out.println("Pilihan tidak valid, silakan coba lagi.\n");
             }
         }
         in.close();
@@ -54,7 +54,7 @@ public class MainMenu {
      * Skips ke hari selanjutnya dan mengupdate sistem.
      */
     private void toNextDay() {
-        System.out.println("Kamu tidur hari ini... zzz...");
+        System.out.println("Kamu tidur hari ini... zzz...\n");
         NotaManager.toNextDay();
     }
 
@@ -72,9 +72,11 @@ public class MainMenu {
         Member registeredMember = loginManager.register(nama, noHp, password);
         if(registeredMember == null){
             System.out.printf("User dengan nama %s dan nomor hp %s sudah ada!\n", nama, noHp);
+            System.out.println();
             return;
         }
         System.out.printf("Berhasil membuat user dengan ID %s!\n", registeredMember.getId());
+        System.out.println();
     }
 
     /**
@@ -87,7 +89,7 @@ public class MainMenu {
         String inputPassword = in.nextLine();
         SystemCLI systemCLI = loginManager.getSystem(inputId);
         if(systemCLI == null){
-            System.out.println("ID atau password invalid.");
+            System.out.println("ID atau password invalid.\n");
             return;
         }
         systemCLI.login(in, inputId, inputPassword);

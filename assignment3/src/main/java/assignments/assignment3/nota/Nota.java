@@ -15,11 +15,13 @@ public class Nota {
     private LaundryService[] services = new LaundryService[1] ;
     private long baseHarga;
     private int sisaHariPengerjaan;
+    private int sisaHariPengerjaanTemp;
     private int berat;
     private int id;
     private String tanggalMasuk;
     private String tanggalSelesaiStr;
-    private boolean isDone;
+    private String kompensasiKeterlambatan;
+    private boolean isDone = true;
     private long hargaAkhir;
     static public int totalNota;
 
@@ -58,12 +60,13 @@ public class Nota {
     }
 
     public String kerjakan(){
-        for (LaundryService service : services){
-            if (!service.isDone()){
-                return "Nota "+this.id+" : "+ service.doWork();
-            }
-        }
-        return null;
+        if (!this.isDone()){
+            for (LaundryService service : services){
+                if (!service.isDone()){
+                    return "Nota "+this.id+" : "+ service.doWork();
+                }
+            }}
+        return "Nota "+this.id+" : "+ this.getNotaStatus();
     }
 
     public void toNextDay() {
@@ -71,12 +74,18 @@ public class Nota {
     }
 
     public long calculateHarga(){
-        // TODO
-        return -1;
+        if (this.sisaHariPengerjaan<0){
+            this.sisaHariPengerjaanTemp = Math.abs(this.sisaHariPengerjaan);
+            kompensasiKeterlambatan = "Ada kompensasi keterlambatan "+this.sisaHariPengerjaanTemp+" * 2000 hari";
+            return hargaAkhir - (this.sisaHariPengerjaanTemp*2000); //hargaAkhir -> harga service
+        } else {
+            kompensasiKeterlambatan = "";
+        }
+        return hargaAkhir;
     }
 
     public String getNotaStatus(){
-        if (isDone() == false){
+        if (this.isDone() == false){
             return "Belum selesai.";
         } else {
             return "Sudah selesai.";
@@ -97,7 +106,9 @@ public class Nota {
         "Tanggal Selesai : " + getTanggalSelesai() +"\n"+
         "--- SERVICE LIST ---\n"+
         printService() +
-        "Harga Akhir: "+ (this.hargaAkhir+(this.berat * this.baseHarga));
+        // "Harga Akhir: "+ (calculateHarga()+this.berat * this.baseHarga) +" "+ kompensasiKeterlambatan + "\n";
+        "Harga Akhir: "+ (calculateHarga()+(this.berat * this.baseHarga)) +" "+ kompensasiKeterlambatan + "\n";
+
     }
 
     // Dibawah ini adalah getter
@@ -131,13 +142,11 @@ public class Nota {
     }
     public boolean isDone() {
         for (LaundryService service : services){
-            if (service.isDone()==true){
-                continue;
-            } else {
-                isDone = false;
+            if (service.isDone() == false){
+                return false;
             }
-        }
-        return isDone;
+        } 
+        return true;
     }
 
     public LaundryService[] getServices(){
@@ -146,8 +155,8 @@ public class Nota {
 
     public String printService(){
         String serviceStr = "";
+        this.hargaAkhir = 0;
         for (LaundryService service : services){
-            System.out.println(service.getServiceName());
             this.hargaAkhir += service.getHarga(berat);
             serviceStr += "-"+service.getServiceName()+" @ Rp." + service.getHarga(berat) + "\n";
         }
@@ -155,6 +164,8 @@ public class Nota {
     }
 
     public void counterHariPengerjaan(){
-        sisaHariPengerjaan--;
+        if (this.isDone() == false){
+            this.sisaHariPengerjaan--;
+        }
     }
 }

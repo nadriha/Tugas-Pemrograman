@@ -13,7 +13,7 @@ public class AntarService implements LaundryService{
     @Override
     public boolean isDone() {
         if (doWorkCounter != 0){
-        return true;
+            return true;
         } else {
             return false;
         }
@@ -22,10 +22,10 @@ public class AntarService implements LaundryService{
     @Override
     public long getHarga(int berat) {
         if (berat <= 4){
-            return berat*1000;
+            return 2000;
         }
         else{
-            return (4000)+((berat-4)*500);
+            return (2000)+((berat-4)*500);
         }
     }
 

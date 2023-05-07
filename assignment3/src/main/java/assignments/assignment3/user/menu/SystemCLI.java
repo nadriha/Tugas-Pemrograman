@@ -27,7 +27,7 @@ public abstract class SystemCLI {
             return;
         }
 
-        System.out.println("Invalid ID or password.");
+        System.out.println("Invalid ID or password.\n");
     };
 
     /**
@@ -46,7 +46,7 @@ public abstract class SystemCLI {
             logout = processChoice(choice);
         }
         loginMember = null;
-        System.out.println("Logging out...");
+        System.out.println("Logging out...\n");
     }
 
     /**
@@ -78,7 +78,6 @@ public abstract class SystemCLI {
     public boolean isMemberExist(String id){
         for (Member member : memberList) {
             if(member.getId().equals(id)){
-                
                 return true;
             }
         }
