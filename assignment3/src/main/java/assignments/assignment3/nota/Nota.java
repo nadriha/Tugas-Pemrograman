@@ -58,11 +58,16 @@ public class Nota {
     }
 
     public String kerjakan(){
-        // TODO
-        return "";
+        for (LaundryService service : services){
+            if (!service.isDone()){
+                return "Nota "+this.id+" : "+ service.doWork();
+            }
+        }
+        return null;
     }
+
     public void toNextDay() {
-        // TODO
+        counterHariPengerjaan();
     }
 
     public long calculateHarga(){
@@ -71,8 +76,11 @@ public class Nota {
     }
 
     public String getNotaStatus(){
-        // TODO
-        return "";
+        if (isDone() == false){
+            return "Belum selesai.";
+        } else {
+            return "Sudah selesai.";
+        }
     }
 
     @Override
@@ -87,7 +95,6 @@ public class Nota {
         harga + 
         "Tanggal Terima  : " + this.tanggalMasuk +"\n"+
         "Tanggal Selesai : " + getTanggalSelesai() +"\n"+
-        "Status          : " + getNotaStatus() +"\n"+
         "--- SERVICE LIST ---\n"+
         printService() +
         "Harga Akhir: "+ (this.hargaAkhir+(this.berat * this.baseHarga));
@@ -123,6 +130,13 @@ public class Nota {
         return sisaHariPengerjaan;
     }
     public boolean isDone() {
+        for (LaundryService service : services){
+            if (service.isDone()==true){
+                continue;
+            } else {
+                isDone = false;
+            }
+        }
         return isDone;
     }
 
@@ -138,5 +152,9 @@ public class Nota {
             serviceStr += "-"+service.getServiceName()+" @ Rp." + service.getHarga(berat) + "\n";
         }
         return serviceStr;
+    }
+
+    public void counterHariPengerjaan(){
+        sisaHariPengerjaan--;
     }
 }

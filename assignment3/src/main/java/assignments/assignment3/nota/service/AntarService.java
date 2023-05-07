@@ -3,16 +3,20 @@ package assignments.assignment3.nota.service;
 import assignments.assignment3.nota.Nota;
 
 public class AntarService implements LaundryService{
+    int doWorkCounter;
     @Override
     public String doWork() {
-        // TODO
-        return "";
+        doWorkCounter++;
+        return "Sedang mengantar...";
     }
 
     @Override
     public boolean isDone() {
-        // TODO
-        return false;
+        if (doWorkCounter != 0){
+        return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

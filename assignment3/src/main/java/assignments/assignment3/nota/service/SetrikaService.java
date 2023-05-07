@@ -1,16 +1,20 @@
 package assignments.assignment3.nota.service;
 
 public class SetrikaService implements LaundryService{
+    int doWorkCounter;
     @Override
     public String doWork() {
-        // TODO
-        return "";
+        doWorkCounter++;
+        return "Sedang menyetrika...";
     }
 
     @Override
     public boolean isDone() {
-        // TODO
-        return false;
+        if (doWorkCounter != 0 ){
+            return true;
+            } else {
+                return false;
+            }
     }
 
     @Override

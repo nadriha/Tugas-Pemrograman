@@ -93,7 +93,7 @@ public class MemberSystem extends SystemCLI {
             }
 
             Nota nota = new Nota(loginMember, Integer.parseInt(beratCucian), paketLaundry, fmt.format(cal.getTime()));
-            // NotaManager.addNota(nota);
+            NotaManager.addNota(nota);
             loginMember.addNota(nota);
 
             System.out.println("Apakah kamu ingin cucianmu disetrika oleh staff professional kami?");

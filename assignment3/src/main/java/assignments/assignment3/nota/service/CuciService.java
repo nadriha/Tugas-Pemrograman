@@ -1,16 +1,21 @@
 package assignments.assignment3.nota.service;
 
+
 public class CuciService implements LaundryService{
+    int doWorkCounter;
     @Override
     public String doWork() {
-        // TODO
-        return "";
+        doWorkCounter++;
+        return "Sedang mencuci...";
     }
 
     @Override
     public boolean isDone() {
-        // TODO
-        return false;
+        if (doWorkCounter != 0){
+        return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
