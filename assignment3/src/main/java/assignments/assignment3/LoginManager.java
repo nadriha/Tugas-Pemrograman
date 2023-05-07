@@ -5,6 +5,7 @@ import assignments.assignment3.user.menu.EmployeeSystem;
 import assignments.assignment3.user.menu.MemberSystem;
 import assignments.assignment3.user.menu.SystemCLI;
 
+//class login manager untuk memproses login
 public class LoginManager {
     private final EmployeeSystem employeeSystem;
     private final MemberSystem memberSystem;
@@ -41,12 +42,12 @@ public class LoginManager {
      */
     public Member register(String nama, String noHp, String password) {
         id = generateId(nama, noHp);
+
         if (getSystem(id) == null){
             Member newMember = new Member(nama, id, password);
-            memberSystem.addMember(newMember);
+            memberSystem.addMember(newMember); //add member baru ke dalam memberlist
             return newMember;
         }
-
         return null;
     }
 
@@ -73,6 +74,5 @@ public class LoginManager {
         //membuat dan mereturn id
         String lastTwoChars = String.format("%02d", characterValue % 100);
         return id = String.format("%s-%s-%s", namaUser.toUpperCase(), noHp, lastTwoChars);
-        
     }
 }

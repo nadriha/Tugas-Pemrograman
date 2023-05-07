@@ -1,12 +1,15 @@
+//import package/library yang diperlukan
 package assignments.assignment3.user;
 
 import assignments.assignment3.nota.Nota;
+
 public class Member {
     protected String id;
     protected String password;
     protected String nama;
     protected Nota[] notaList = new Nota[0];
 
+    //constructor class member
     public Member(String nama, String id, String password) {
         this.nama = nama;
         this.id = id;
@@ -31,12 +34,10 @@ public class Member {
      */
     public void addNota(Nota nota) {
         Nota[] newNotaList = new Nota[notaList.length+1];
-
         for (int i = 0; i < notaList.length; i++) {
             newNotaList[i] = notaList[i];
           }
           notaList = newNotaList;
-      
           newNotaList[notaList.length - 1] = nota;
 
     }

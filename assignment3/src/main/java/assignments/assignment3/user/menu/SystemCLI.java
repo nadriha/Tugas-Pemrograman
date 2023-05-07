@@ -1,3 +1,4 @@
+//import package/library yang diperlukan
 package assignments.assignment3.user.menu;
 
 import assignments.assignment3.user.Member;
@@ -5,6 +6,7 @@ import assignments.assignment3.user.Member;
 import java.util.Scanner;
 
 public abstract class SystemCLI {
+    //membuat variable-variable yang akan diugunakan
     protected Member[] memberList = new Member[0];
     protected Member loginMember;
     protected Scanner in;
@@ -23,10 +25,9 @@ public abstract class SystemCLI {
         if (authMember != null) {
             this.in = in;
             System.out.println("Login successful!");
-            run(in, authMember);
+            run(in, authMember); //menjalankan run juga authentication user berhasil
             return;
         }
-
         System.out.println("Invalid ID or password.\n");
     };
 
@@ -43,7 +44,7 @@ public abstract class SystemCLI {
             displayMenu();
             int choice = in.nextInt();
             in.nextLine();
-            logout = processChoice(choice);
+            logout = processChoice(choice); //proses pilihan user
         }
         loginMember = null;
         System.out.println("Logging out...\n");

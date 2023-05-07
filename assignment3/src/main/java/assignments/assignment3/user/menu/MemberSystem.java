@@ -1,3 +1,4 @@
+//import package/library yang diperlukan
 package assignments.assignment3.user.menu;
 import assignments.assignment3.user.Member;
 import assignments.assignment3.nota.Nota;
@@ -11,10 +12,12 @@ import java.util.Scanner;
 
 
 public class MemberSystem extends SystemCLI {
+    //membuat variable/object yang akan diperlukan
     private static final Scanner input = new Scanner(System.in);
     private static SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
     private static Calendar cal = Calendar.getInstance();
     private String paketLaundry;
+
     /**
      * Memproses pilihan dari Member yang masuk ke sistem ini sesuai dengan menu specific.
      *
@@ -60,6 +63,10 @@ public class MemberSystem extends SystemCLI {
           newMemberList[memberList.length - 1] = member;
     }
 
+    /*
+     * method laundry jika user memilih pilihan pertama
+     * meminta input-input pada user
+     */
     public void laundry() {
         boolean isPaketLaundryValid = true;
                 while (isPaketLaundryValid){
@@ -91,17 +98,19 @@ public class MemberSystem extends SystemCLI {
                 beratCucian = "2";
             }
 
+            //membuat nota baru
             Nota nota = new Nota(loginMember, Integer.parseInt(beratCucian), paketLaundry, fmt.format(cal.getTime()));
-            NotaManager.addNota(nota);
+            NotaManager.addNota(nota); //add nota ke dalam notalist
             loginMember.addNota(nota);
 
+            //meminta input untuk service tambahan
             System.out.println("Apakah kamu ingin cucianmu disetrika oleh staff professional kami?");
             System.out.println("Hanya tambah 1000 / kg");
             System.out.print("[Ketik x untuk tidak mau]: ");
             String setrikaUser = input.nextLine();
             if (!setrikaUser.equals("x")){
                 SetrikaService setrika = new SetrikaService();
-                nota.addService(setrika);
+                nota.addService(setrika); //add service ke dalam services
                 }
 
             System.out.println("Mau diantar oleh kurir kami? Dijamin aman dan cepat sampai tujuan!");
@@ -113,16 +122,18 @@ public class MemberSystem extends SystemCLI {
                 nota.addService(antar);
                 }
 
-            System.out.println("Nota berhasil dibuat!");
+            System.out.println("Nota berhasil dibuat!"); //print status
         
     }
 
+    //method untuk mencetak detail nota pada notalist
     public void detailNota(){
         for (Nota nota : loginMember.getNotaList()){
             System.out.println(nota);
         }
     }
 
+    //method untuk show paket
     public void showPaket(){
         System.out.println("+-------------Paket-------------+");
         System.out.println("| Express | 1 Hari | 12000 / Kg |");
@@ -131,6 +142,7 @@ public class MemberSystem extends SystemCLI {
         System.out.println("+-------------------------------+");
     }
 
+    //method untuk mengecek apakah input ada yang berupa karakter atau tidak
     private static boolean hasCharacter(String nomor) {
         int check = 0; //variable cek untuk menampung jumlah char
         for(int i = 0; i < nomor.length(); i++){

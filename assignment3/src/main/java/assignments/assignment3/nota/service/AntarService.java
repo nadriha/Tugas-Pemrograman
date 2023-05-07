@@ -3,13 +3,15 @@ package assignments.assignment3.nota.service;
 import assignments.assignment3.nota.Nota;
 
 public class AntarService implements LaundryService{
-    int doWorkCounter;
+    int doWorkCounter; //counter untuk mengecek service sudah dijalankan atau belum
+
     @Override
     public String doWork() {
         doWorkCounter++;
-        return "Sedang mengantar...";
+        return "Sedang mengantar..."; //print status
     }
 
+    //method untuk mengecek service sudah dijalankan atau belum
     @Override
     public boolean isDone() {
         if (doWorkCounter != 0){
@@ -19,6 +21,7 @@ public class AntarService implements LaundryService{
         }
     }
 
+    //getter
     @Override
     public long getHarga(int berat) {
         if (berat <= 4){

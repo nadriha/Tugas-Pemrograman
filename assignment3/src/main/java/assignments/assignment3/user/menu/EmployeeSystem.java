@@ -1,3 +1,4 @@
+//import package/library yang diperlukan
 package assignments.assignment3.user.menu;
 
 import assignments.assignment3.nota.Nota;
@@ -48,13 +49,15 @@ public class EmployeeSystem extends SystemCLI {
         System.out.println("3. Logout");
     }
 
+    //method cuciTime jika input employee = 1
     public void cuciTime(){
-        System.out.println("Stand back! "+ loginMember.getNama() +" beginning to nyuci!");
-        for (Nota nota : notaList){
+        System.out.println("Stand back! "+ loginMember.getNama() +" beginning to nyuci!"); //print status
+        for (Nota nota : notaList){ //iterasi agar tiap nota bekerja
             System.out.println(nota.kerjakan());
         }
     }
 
+    //method untuk menampilkan nota-nota beserta statusnya
     public void displayListlNota(){
         for (Nota nota : notaList){
             System.out.println("Nota "+nota.getIdNota()+" : "+nota.getNotaStatus());

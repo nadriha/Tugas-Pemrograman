@@ -1,10 +1,12 @@
+//import package/library yang diperlukan
 package assignments.assignment3.user;
 
 public class Employee extends Member {
     public static int employeeCount;
     
+    //constructor class employee
     public Employee(String nama, String password) {
-        super(nama, generateId(nama), password);
+        super(nama, generateId(nama), password); //inherit dari class member
     }
 
     /**
@@ -18,7 +20,7 @@ public class Employee extends Member {
         String[] namaArr = nama.split(" "); //array untuk menampung nama user yang sudah di split
         String namaUser = namaArr[0]; //mengambil nama depan pada array nama
         
-        employeeCount++;
+        employeeCount++; //increment counter untuk membuat id employee
         
         return String.format("%s-%d",namaUser.toUpperCase(), employeeCount-1);
 

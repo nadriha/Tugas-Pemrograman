@@ -1,3 +1,9 @@
+/*
+ * Nadhira Raihana Hafez
+ * 2206082000 - ddp2g
+ */
+
+ //import package/library yang diperlukan
 package assignments.assignment3;
 
 import assignments.assignment3.nota.NotaManager;
@@ -11,14 +17,14 @@ import java.util.Scanner;
 import static assignments.assignment3.nota.NotaManager.cal;
 import static assignments.assignment3.nota.NotaManager.fmt;
 
+//class untuk program utama berjalan
 public class MainMenu {
+    //membuat variable yang akan diperlukan
     private final Scanner in;
     private final LoginManager loginManager;
 
     /**
      * Entry point for the CuciCuci System application.
-     *
-     * @param args command line arguments, bisa kalian ignore.
      */
     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu(new Scanner(System.in), new LoginManager(new EmployeeSystem(), new MemberSystem()));
@@ -39,7 +45,7 @@ public class MainMenu {
             displayMenu();
             int choice = in.nextInt();
             in.nextLine();
-            switch (choice) {
+            switch (choice) { //switch case untuk menjalankan program sesuai input user
                 case 1 -> login();
                 case 2 -> register();
                 case 3 -> toNextDay();
@@ -62,13 +68,14 @@ public class MainMenu {
      * Mendaftarkan user pada sistem.
      */
     void register() {
-        System.out.println("Masukan nama Anda: ");
+        System.out.println("Masukan nama Anda: "); //meminta input user
         String nama = in.nextLine();
         System.out.println("Masukan nomor handphone Anda: ");
         String noHp = in.nextLine();
         System.out.println("Masukan password Anda: ");
         String password = in.nextLine();
 
+        //membuat obhect + validasi member yang akan ditambahkan
         Member registeredMember = loginManager.register(nama, noHp, password);
         if(registeredMember == null){
             System.out.printf("User dengan nama %s dan nomor hp %s sudah ada!\n", nama, noHp);
@@ -83,15 +90,17 @@ public class MainMenu {
      * Meminta user untuk login dan memulai SystemCLI yang sesuai.
      */
     private void login() {
-        System.out.print("Masukan ID Anda: ");
+        System.out.print("Masukan ID Anda: "); //meminta input user
         String inputId = in.nextLine();
         System.out.print("Masukan password Anda: ");
         String inputPassword = in.nextLine();
+        //mengecek jika id ada dan password sesuai
         SystemCLI systemCLI = loginManager.getSystem(inputId);
         if(systemCLI == null){
             System.out.println("ID atau password invalid.\n");
             return;
         }
+        //menjalanan program sesuai id
         systemCLI.login(in, inputId, inputPassword);
     }
 
