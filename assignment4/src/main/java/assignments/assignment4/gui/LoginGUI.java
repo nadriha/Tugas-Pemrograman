@@ -38,7 +38,51 @@ public class LoginGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
-        // TODO
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(15, 20, 15, 20);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 1.0;
+
+        c.gridy = 0;
+        c.gridx = 0;
+        idLabel = new JLabel("Masukkan ID Anda:");
+        mainPanel.add(idLabel, c);
+
+        c.gridy = 1;
+        c.gridx = 0;
+        idTextField = new JTextField();
+        mainPanel.add(idTextField, c);
+
+        c.gridy = 2;
+        c.gridx = 0;
+        passwordLabel = new JLabel("Masukkan password Anda:");  
+        mainPanel.add(passwordLabel, c);
+        
+        c.gridy = 3;
+        c.gridx = 0;
+        passwordField = new JPasswordField();  
+        mainPanel.add(passwordField, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridy = 6;
+        c.gridx = 0;
+        loginButton = new JButton("Login");
+        mainPanel.add(loginButton, c);
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                handleLogin();
+            }
+            });
+
+        c.gridy = 7;
+        c.gridx = 0;
+        backButton = new JButton("Kembali");
+        mainPanel.add(backButton, c);
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                handleBack();
+            }
+            });
     }
 
     /**
@@ -46,6 +90,8 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        MainFrame mainFrame = MainFrame.getInstance();
+        mainFrame.navigateTo(HomeGUI.KEY);
     }
 
     /**
@@ -53,6 +99,6 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private void handleLogin() {
-        // TODO
+        
     }
 }

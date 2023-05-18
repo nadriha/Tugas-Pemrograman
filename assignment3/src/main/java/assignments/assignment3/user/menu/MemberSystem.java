@@ -143,7 +143,7 @@ public class MemberSystem extends SystemCLI {
     }
 
     //method untuk mengecek apakah input ada yang berupa karakter atau tidak
-    private static boolean hasCharacter(String nomor) {
+    public static boolean hasCharacter(String nomor) {
         int check = 0; //variable cek untuk menampung jumlah char
         for(int i = 0; i < nomor.length(); i++){
             if (Character.isDigit(nomor.charAt(i))){
