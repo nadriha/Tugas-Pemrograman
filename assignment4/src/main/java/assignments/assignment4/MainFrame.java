@@ -100,7 +100,10 @@ public class MainFrame extends JFrame{
     public boolean login(String id, String password){
         for (Loginable panel:
                 loginablePanel) {
-            // TODO
+            if (panel.login(id, password)){
+                navigateTo(panel.getPageName()); //system key
+                return true;
+            }
         }
         return false;
     }

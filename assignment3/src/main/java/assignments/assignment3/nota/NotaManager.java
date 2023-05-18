@@ -34,5 +34,5 @@ public class NotaManager {
           notaList = newNotaList;
           newNotaList[notaList.length - 1] = nota;
     }
-
+    
 }

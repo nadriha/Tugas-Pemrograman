@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class RegisterGUI extends JPanel {
     public static final String KEY = "REGISTER";
@@ -44,7 +43,7 @@ public class RegisterGUI extends JPanel {
      * */
     private void initGUI() {
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(15, 20, 15, 20);
+        c.insets = new Insets(10, 20, 15, 20);
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1.0;
 
@@ -53,6 +52,7 @@ public class RegisterGUI extends JPanel {
         nameLabel = new JLabel("Masukkan nama Anda:");
         mainPanel.add(nameLabel, c);
 
+        c.insets = new Insets(0, 20, 15, 20);
         c.gridy = 1;
         c.gridx = 0;
         nameTextField = new JTextField();
@@ -78,6 +78,7 @@ public class RegisterGUI extends JPanel {
         passwordField = new JPasswordField();  
         mainPanel.add(passwordField, c);
 
+        c.insets = new Insets(20, 20, 0, 20);
         c.fill = GridBagConstraints.NONE;
         c.gridy = 6;
         c.gridx = 0;
@@ -89,6 +90,7 @@ public class RegisterGUI extends JPanel {
             }
             });
 
+        c.insets = new Insets(0, 20, 0, 20);
         c.gridy = 7;
         c.gridx = 0;
         backButton = new JButton("Kembali");
@@ -105,6 +107,9 @@ public class RegisterGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        nameTextField.setText("");
+        phoneTextField.setText("");
+        passwordField.setText("");
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.navigateTo(HomeGUI.KEY);
     }
@@ -123,20 +128,22 @@ public class RegisterGUI extends JPanel {
             JOptionPane.showMessageDialog(null, "isi semua field",
                                                      "Info", JOptionPane.ERROR_MESSAGE);
         } else if (MemberSystem.hasCharacter(phoneString)){
-            JOptionPane.showMessageDialog(null, "hp tolong ya semua angka",
-                                                     "Info", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nomor handphone harus bersisi angka!",
+                                                     "Invalid Phone Number", JOptionPane.ERROR_MESSAGE);
         } else {
             Member loginMember = loginManager.register(nameString, phoneString, passwordString);
             if (loginMember == null){
-                JOptionPane.showMessageDialog(null, "sukses",
-                                                     "Info", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "User dengan nama "+ nameString + " sudah ada!",
+                                                     "Registration Failed", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Berhasil membuat user dengan ID "+ loginMember.getId() + "!",
+                                                     "Registration Successful", JOptionPane.INFORMATION_MESSAGE);
+                nameTextField.setText("");
+                phoneTextField.setText("");
+                passwordField.setText("");
                 MainFrame mainFrame = MainFrame.getInstance();
                 mainFrame.navigateTo(HomeGUI.KEY);
-            } else {
-                JOptionPane.showMessageDialog(null, "dah ada",
-                                                     "Info", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        
+        }               
     }
 }

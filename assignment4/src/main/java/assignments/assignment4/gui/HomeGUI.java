@@ -1,6 +1,5 @@
 package assignments.assignment4.gui;
 
-import assignments.assignment3.LoginManager;
 import assignments.assignment3.nota.NotaManager;
 import assignments.assignment4.MainFrame;
 
@@ -41,7 +40,7 @@ public class HomeGUI extends JPanel {
     private void initGUI() {
         titleLabel = new JLabel("Selamat datang di CuciCuci System!");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titleLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
         add(titleLabel, BorderLayout.NORTH);
 
         GridBagConstraints c = new GridBagConstraints();
@@ -49,7 +48,7 @@ public class HomeGUI extends JPanel {
 
         c.gridy = 0;
         c.gridx = 0;
-        loginButton = new JButton("login");
+        loginButton = new JButton("Login");
         mainPanel.add(loginButton, c);
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -71,11 +70,17 @@ public class HomeGUI extends JPanel {
         c.gridx = 0;
         toNextDayButton = new JButton("Next Day");
         mainPanel.add(toNextDayButton, c);
+        toNextDayButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                handleNextDay();
+            }
+            });
 
-        dateLabel = new JLabel("hari");
+        dateLabel = new JLabel("Hari ini: "+ NotaManager.fmt.format(NotaManager.cal.getTime()));
         dateLabel.setHorizontalAlignment(JLabel.CENTER);
-        dateLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        dateLabel.setFont(new Font("Arial", Font.BOLD, 15));
         add(dateLabel, BorderLayout.SOUTH);
+        
     }
 
     /**
@@ -101,5 +106,10 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "toNextDayButton"
      * */
     private void handleNextDay() {
+        toNextDay();
+        dateLabel.setText("Hari ini: "+ NotaManager.fmt.format(NotaManager.cal.getTime()));
+        JOptionPane.showMessageDialog(null, "Kamu tidur hari ini... zzz...",
+                                                     "Zzz... Tidur😴", JOptionPane.INFORMATION_MESSAGE);
+
     }
 }

@@ -39,7 +39,7 @@ public class LoginGUI extends JPanel {
      * */
     private void initGUI() {
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(15, 20, 15, 20);
+        c.insets = new Insets(10, 20, 15, 20);
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1.0;
 
@@ -48,6 +48,7 @@ public class LoginGUI extends JPanel {
         idLabel = new JLabel("Masukkan ID Anda:");
         mainPanel.add(idLabel, c);
 
+        c.insets = new Insets(0, 20, 15, 20);
         c.gridy = 1;
         c.gridx = 0;
         idTextField = new JTextField();
@@ -63,6 +64,7 @@ public class LoginGUI extends JPanel {
         passwordField = new JPasswordField();  
         mainPanel.add(passwordField, c);
 
+        c.insets = new Insets(20, 10, 0, 10);
         c.fill = GridBagConstraints.NONE;
         c.gridy = 6;
         c.gridx = 0;
@@ -74,6 +76,7 @@ public class LoginGUI extends JPanel {
             }
             });
 
+        c.insets = new Insets(10, 10, 0, 10);
         c.gridy = 7;
         c.gridx = 0;
         backButton = new JButton("Kembali");
@@ -90,6 +93,8 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        idTextField.setText("");
+        passwordField.setText("");
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.navigateTo(HomeGUI.KEY);
     }
@@ -99,6 +104,19 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private void handleLogin() {
-        
+        // nad cpt selesaiin
+        // baik
+        String idString = idTextField.getText();
+        char[] passwordChar = passwordField.getPassword();
+        String passwordString = new String(passwordChar);
+
+        MainFrame mainFrame = MainFrame.getInstance();
+        if (!mainFrame.login(idString, passwordString)){
+            JOptionPane.showMessageDialog(null, "ID atau password invalid",
+                                                     "Invalid ID or Password", JOptionPane.ERROR_MESSAGE);
+        } else {
+            idTextField.setText("");
+            passwordField.setText("");
+        }
     }
 }

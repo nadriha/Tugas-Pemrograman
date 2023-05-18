@@ -45,6 +45,7 @@ public class Nota {
             this.baseHarga = 7000;
         }
 
+        getTanggalSelesai();
         //memasukkan service cuci ke dalam array services
         CuciService cuci = new CuciService();
         services[0] = cuci;
@@ -110,7 +111,7 @@ public class Nota {
         "Harga :\n" +
         harga + 
         "Tanggal Terima  : " + this.tanggalMasuk +"\n"+
-        "Tanggal Selesai : " + getTanggalSelesai() +"\n"+
+        "Tanggal Selesai : " + this.tanggalSelesaiStr +"\n"+
         "--- SERVICE LIST ---\n"+
         printService() +
         "Harga Akhir: "+ (calculateHarga()+(this.berat * this.baseHarga)) +" "+ kompensasiKeterlambatan + "\n";

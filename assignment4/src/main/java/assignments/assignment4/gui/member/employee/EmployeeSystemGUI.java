@@ -30,8 +30,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        // TODO
-        return new JButton[]{
+        JButton cuciButton = new JButton("It's Cuci Time");
+        JButton displayNotaButton = new JButton("Display List Nota");
+
+        return new JButton[]{cuciButton,displayNotaButton
         };
     }
 
@@ -54,7 +56,21 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void displayNota() {
-        // TODO
+        JTextArea textArea = new JTextArea(20, 20);  
+        JScrollPane detaillNota = new JScrollPane(textArea);
+
+        if (NotaManager.notaList.length == 0){
+            JOptionPane.showMessageDialog(null, "Belum ada nota:(",
+                                            "List Nota", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String allNota = "";
+            for (Nota nota : NotaManager.notaList){
+                allNota += "Nota "+nota.getIdNota()+" : "+nota.getNotaStatus()+"\n";
+            }
+            textArea.setText(allNota);
+            JOptionPane.showMessageDialog(null, detaillNota,
+                                        "Info", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -62,6 +78,22 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void cuci() {
-        // TODO
+        JOptionPane.showMessageDialog(null, "Stand Back! "+loggedInMember.getNama()+" beginning to nyuci!",
+                                                     "Nyuci Time...", JOptionPane.INFORMATION_MESSAGE);
+        JTextArea textArea = new JTextArea(20, 20);  
+        JScrollPane detaillNota = new JScrollPane(textArea);
+
+        if (NotaManager.notaList.length == 0){
+            JOptionPane.showMessageDialog(null, "Nothing to cuci here :(",
+                                            "Nyuci Results", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String allNota = "";
+            for (Nota nota : NotaManager.notaList){ //iterasi agar tiap nota bekerja
+                allNota += nota.kerjakan()+"\n";
+            }
+            textArea.setText(allNota);
+            JOptionPane.showMessageDialog(null, detaillNota,
+                                        "Nyuci Results", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
