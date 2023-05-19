@@ -32,12 +32,13 @@ public class MainFrame extends JFrame{
 
     private MainFrame(){
         super("CuciCuciSystem");
-//        TODO: uncomment code dibawah ini setelah kamu implmentasikan addEmployee pada EmployeeSystem.
-//        // for context dari 2 employee baru ini : https://ristek.link/karyawan-baru-cucicuci
-    //    employeeSystem.addEmployee(new Employee[]{
-    //            new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
-    //            new Employee("Regret", "FansBeratKanaArima")
-    //    });
+        // for context dari 2 employee baru ini : https://ristek.link/karyawan-baru-cucicuci
+        //tambah employee baru
+       employeeSystem.addEmployee(new Employee[]{
+               new Employee("delta Epsilon Huha Huha", "ImplicitDiff"),
+               new Employee("Regret", "FansBeratKanaArima")
+       }); 
+        //membuat main frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 432);
         setVisible(true);
@@ -99,9 +100,9 @@ public class MainFrame extends JFrame{
      * */
     public boolean login(String id, String password){
         for (Loginable panel:
-                loginablePanel) {
-            if (panel.login(id, password)){
-                navigateTo(panel.getPageName()); //system key
+                loginablePanel) { //iterasi tiap panel dan login jika id dan password sesuai
+            if (panel.login(id, password)){ //mengecek pass dan id
+                navigateTo(panel.getPageName()); //pindah ke panel yang ditgi
                 return true;
             }
         }

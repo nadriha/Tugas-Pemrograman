@@ -18,6 +18,7 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
     public AbstractMemberGUI(SystemCLI systemCLI) {
         super(new BorderLayout());
         this.systemCLI = systemCLI;
+
         // Set up welcome label
         welcomeLabel = new JLabel("", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -35,7 +36,6 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
     /**
      * Membuat panel button yang akan ditampilkan pada Panel ini.
      * Buttons dan ActionListeners akan disupply oleh method createButtons() & createActionListeners() respectively.
-     * <p> Feel free to make any changes. Be creative and have fun!
      *
      * @return JPanel yang di dalamnya berisi Buttons.
      * */
@@ -43,9 +43,9 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         JButton[] buttons = createButtons();
         ActionListener[] listeners = createActionListeners();
 
-        // if (buttons.length != listeners.length) {
-        //     throw new IllegalStateException("Number of buttons and listeners must be equal.");
-        // }
+        if (buttons.length != listeners.length) {
+            throw new IllegalStateException("Number of buttons and listeners must be equal.");
+        }
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -91,8 +91,8 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         loggedInMember = systemCLI.authUser(id, password);
 
         if (loggedInMember != null){
-            welcomeLabel.setText("Welcome! "+ loggedInMember.getNama());
-            loggedInAsLabel.setText("Logged in as " + loggedInMember.getId());
+            welcomeLabel.setText("Welcome! "+ loggedInMember.getNama()); //update label welcome
+            loggedInAsLabel.setText("Logged in as " + loggedInMember.getId()); //update label user id
             return true;
         }
 

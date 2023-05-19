@@ -21,7 +21,7 @@ public class HomeGUI extends JPanel {
     private JButton toNextDayButton;
 
     public HomeGUI(){
-        super(new BorderLayout()); // Setup layout, Feel free to make any changes
+        super(new BorderLayout()); // Setup layout
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
@@ -34,8 +34,6 @@ public class HomeGUI extends JPanel {
 
     /**
      * Method untuk menginisialisasi GUI.
-     * Selama funsionalitas sesuai dengan soal, tidak apa apa tidak 100% sama.
-     * Be creative and have fun!
      * */
     private void initGUI() {
         titleLabel = new JLabel("Selamat datang di CuciCuci System!");
@@ -43,14 +41,16 @@ public class HomeGUI extends JPanel {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
         add(titleLabel, BorderLayout.NORTH);
 
+        //membuat layout
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(25, 5, 25, 5);
 
+        //menambahkan objek yang diperlukan pada main panel
         c.gridy = 0;
         c.gridx = 0;
         loginButton = new JButton("Login");
         mainPanel.add(loginButton, c);
-        loginButton.addActionListener(new ActionListener() {
+        loginButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 handleToLogin();
             }
@@ -60,7 +60,7 @@ public class HomeGUI extends JPanel {
         c.gridx = 0;
         registerButton = new JButton("Register");
         mainPanel.add(registerButton, c);
-        registerButton.addActionListener(new ActionListener() {
+        registerButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 handleToRegister();
             }
@@ -70,7 +70,7 @@ public class HomeGUI extends JPanel {
         c.gridx = 0;
         toNextDayButton = new JButton("Next Day");
         mainPanel.add(toNextDayButton, c);
-        toNextDayButton.addActionListener(new ActionListener() {
+        toNextDayButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 handleNextDay();
             }
@@ -106,7 +106,7 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "toNextDayButton"
      * */
     private void handleNextDay() {
-        toNextDay();
+        toNextDay(); //method next day pada NotaManager
         dateLabel.setText("Hari ini: "+ NotaManager.fmt.format(NotaManager.cal.getTime()));
         JOptionPane.showMessageDialog(null, "Kamu tidur hari ini... zzz...",
                                                      "Zzz... Tidur😴", JOptionPane.INFORMATION_MESSAGE);

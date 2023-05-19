@@ -24,8 +24,6 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
 
     /**
      * Method ini mensupply buttons yang sesuai dengan requirements Employee.
-     * Button yang disediakan method ini BELUM memiliki ActionListener.
-     *
      * @return Array of JButton, berisi button yang sudah stylize namun belum ada ActionListener.
      * */
     @Override
@@ -55,10 +53,8 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Menampilkan semua Nota yang ada pada sistem.
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
+    
     private void displayNota() {
-        JTextArea textArea = new JTextArea(20, 20);  
-        JScrollPane detaillNota = new JScrollPane(textArea);
-
         if (NotaManager.notaList.length == 0){
             JOptionPane.showMessageDialog(null, "Belum ada nota:(",
                                             "List Nota", JOptionPane.ERROR_MESSAGE);
@@ -67,9 +63,8 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
             for (Nota nota : NotaManager.notaList){
                 allNota += "Nota "+nota.getIdNota()+" : "+nota.getNotaStatus()+"\n";
             }
-            textArea.setText(allNota);
-            JOptionPane.showMessageDialog(null, detaillNota,
-                                        "Info", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, allNota,
+                                        "Nyuci Results", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -80,8 +75,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     private void cuci() {
         JOptionPane.showMessageDialog(null, "Stand Back! "+loggedInMember.getNama()+" beginning to nyuci!",
                                                      "Nyuci Time...", JOptionPane.INFORMATION_MESSAGE);
-        JTextArea textArea = new JTextArea(20, 20);  
-        JScrollPane detaillNota = new JScrollPane(textArea);
+        
 
         if (NotaManager.notaList.length == 0){
             JOptionPane.showMessageDialog(null, "Nothing to cuci here :(",
@@ -91,9 +85,8 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
             for (Nota nota : NotaManager.notaList){ //iterasi agar tiap nota bekerja
                 allNota += nota.kerjakan()+"\n";
             }
-            textArea.setText(allNota);
-            JOptionPane.showMessageDialog(null, detaillNota,
-                                        "Nyuci Results", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, allNota,
+                                        "Nyuci Results", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

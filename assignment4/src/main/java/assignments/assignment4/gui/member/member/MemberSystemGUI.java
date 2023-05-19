@@ -17,6 +17,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
         super(systemCLI);
     }
 
+    //getter
     @Override
     public String getPageName(){
         return KEY;
@@ -60,12 +61,13 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void showDetailNota() {
+        //membuat scroll pane dan text area untuk display nota
         JTextArea textArea = new JTextArea(20, 30);  
         JScrollPane detaillNota = new JScrollPane(textArea); 
 
-        if (loggedInMember.getNotaList().length == 0){
+        if (loggedInMember.getNotaList().length == 0){ //output jika belum ada nota
             textArea.setText("Belum pernah laundy di CuciCuci. Hiks:(");
-        } else {
+        } else { //print out nota pada JScrollPane
             String allNota = "";
             for (Nota nota : loggedInMember.getNotaList()){
                 allNota += nota.toString()+"\n";

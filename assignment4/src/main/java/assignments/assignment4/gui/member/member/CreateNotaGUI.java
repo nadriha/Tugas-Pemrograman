@@ -41,7 +41,7 @@ public class CreateNotaGUI extends JPanel {
         mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Set up main panel, Feel free to make any changes
+        // Set up main panel
         initGUI();
 
         add(mainPanel, BorderLayout.CENTER);
@@ -49,8 +49,6 @@ public class CreateNotaGUI extends JPanel {
 
     /**
      * Method untuk menginisialisasi GUI.
-     * Selama funsionalitas sesuai dengan soal, tidak apa apa tidak 100% sama.
-     * Be creative and have fun!
      * */
     private void initGUI() {
         GridBagConstraints c = new GridBagConstraints();
@@ -58,6 +56,7 @@ public class CreateNotaGUI extends JPanel {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1.0;
 
+        //membuat object object yang diperlukan
         c.gridy = 0;
         c.gridx = 0;
         paketLabel = new JLabel("Paket Laundry: ");
@@ -66,13 +65,13 @@ public class CreateNotaGUI extends JPanel {
         c.gridy = 0;
         c.gridx = 1;
         paketComboBox = new JComboBox<>(new String[]{"Express", "Fast", "Reguler"});
-        mainPanel.add(paketComboBox);
+        mainPanel.add(paketComboBox); 
 
         c.gridy = 0;
         c.gridx = 2;
         showPaketButton = new JButton("Show Paket");
         mainPanel.add(showPaketButton, c);
-        showPaketButton.addActionListener(new ActionListener() {
+        showPaketButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 showPaket();
             }
@@ -105,7 +104,7 @@ public class CreateNotaGUI extends JPanel {
         c.gridx = 0;
         createNotaButton = new JButton("Buat Nota");
         mainPanel.add(createNotaButton, c);
-        createNotaButton.addActionListener(new ActionListener() {
+        createNotaButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 createNota();
             }
@@ -115,7 +114,7 @@ public class CreateNotaGUI extends JPanel {
         c.gridx = 0;
         backButton = new JButton("Kembali");
         mainPanel.add(backButton, c);
-        backButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 handleBack();
             }
@@ -139,6 +138,7 @@ public class CreateNotaGUI extends JPanel {
 
         JLabel label = new JLabel(paketInfo);
         label.setFont(new Font("monospaced", Font.PLAIN, 12));
+        //print out show paket
         JOptionPane.showMessageDialog(this, label, "Paket Information", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -151,6 +151,7 @@ public class CreateNotaGUI extends JPanel {
         String berat = beratTextField.getText();
         int beratInt = 0;
 
+        //validasi input user jika berat bukan sebuah angka
         if (MemberSystem.hasCharacter(berat)){
             JOptionPane.showMessageDialog(null, "Berat cucian harus berisi angka!",
                                 "Error", JOptionPane.ERROR_MESSAGE);
@@ -158,6 +159,7 @@ public class CreateNotaGUI extends JPanel {
             return;
         }
 
+        //return berat = 2 jika berat < 2
         if (berat == null || berat.equals("")){
             beratInt = 2;
             JOptionPane.showMessageDialog(null, "Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg",
@@ -170,10 +172,12 @@ public class CreateNotaGUI extends JPanel {
             beratInt = Integer.parseInt(beratTextField.getText());
         }
         
+        //membuat nota baru
         Nota newNota = new Nota(memberSystemGUI.getLoggedInMember(), beratInt, paketString, fmt.format(cal.getTime()));
         NotaManager.addNota(newNota); //add nota ke dalam notalist
         memberSystemGUI.getLoggedInMember().addNota(newNota);
 
+        //menambahkan service yang akan dipakai oleh user
         if (setrikaCheckBox.isSelected()) {
             SetrikaService setrika = new SetrikaService();
             newNota.addService(setrika);
@@ -182,8 +186,11 @@ public class CreateNotaGUI extends JPanel {
             AntarService antar = new AntarService();
             newNota.addService(antar);
         }
+        //mencetak status information message
         JOptionPane.showMessageDialog(null, "Nota berhasil dibuat!",
-                                "Info", JOptionPane.ERROR_MESSAGE);
+                                "Info", JOptionPane.INFORMATION_MESSAGE);
+
+        //set field menjadi kosong kembali
         beratTextField.setText("");
         setrikaCheckBox.setSelected(false);
         antarCheckBox.setSelected(false);

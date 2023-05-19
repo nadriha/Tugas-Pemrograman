@@ -21,6 +21,24 @@ public class EmployeeSystem extends SystemCLI {
         };
     }
 
+    public void addEmployee(Employee[] employees) {
+        for (Employee employee : employees){
+            addEmployeetoList(employee);
+        }
+
+    }
+
+    public void addEmployeetoList(Member member){
+        Member[] newMemberList = new Member[memberList.length+1];
+
+        for (int i = 0; i < memberList.length; i++) {
+            newMemberList[i] = memberList[i];
+          }
+          memberList = newMemberList;
+      
+          newMemberList[memberList.length - 1] = member;
+    }
+
     /**
      * Memproses pilihan dari employee yang masuk ke sistem ini sesuai dengan menu specific.
      *

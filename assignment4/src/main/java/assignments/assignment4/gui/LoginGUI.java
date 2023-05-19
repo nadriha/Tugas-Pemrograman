@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginGUI extends JPanel {
+    //membuat variable yang akan dibutuhkan
     public static final String KEY = "LOGIN";
     private JPanel mainPanel;
     private JLabel idLabel;
@@ -20,13 +21,14 @@ public class LoginGUI extends JPanel {
     private LoginManager loginManager;
 
     public LoginGUI(LoginManager loginManager) {
-        super(new BorderLayout()); // Setup layout, Feel free to make any changes
+        super(new BorderLayout()); // Setup layout
         this.loginManager = loginManager;
 
-        // Set up main panel, Feel free to make any changes
+        // Set up main panel
         mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        //inisiasi objek
         initGUI();
 
         add(mainPanel, BorderLayout.CENTER);
@@ -34,8 +36,6 @@ public class LoginGUI extends JPanel {
 
     /**
      * Method untuk menginisialisasi GUI.
-     * Selama funsionalitas sesuai dengan soal, tidak apa apa tidak 100% sama.
-     * Be creative and have fun!
      * */
     private void initGUI() {
         GridBagConstraints c = new GridBagConstraints();
@@ -43,6 +43,7 @@ public class LoginGUI extends JPanel {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1.0;
 
+        //menambahkan objek yang diperlukan pada main panel
         c.gridy = 0;
         c.gridx = 0;
         idLabel = new JLabel("Masukkan ID Anda:");
@@ -70,7 +71,7 @@ public class LoginGUI extends JPanel {
         c.gridx = 0;
         loginButton = new JButton("Login");
         mainPanel.add(loginButton, c);
-        loginButton.addActionListener(new ActionListener() {
+        loginButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 handleLogin();
             }
@@ -81,7 +82,7 @@ public class LoginGUI extends JPanel {
         c.gridx = 0;
         backButton = new JButton("Kembali");
         mainPanel.add(backButton, c);
-        backButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() { //handler jika user mengklik button
             public void actionPerformed(ActionEvent e){
                 handleBack();
             }
@@ -93,8 +94,9 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
-        idTextField.setText("");
+        idTextField.setText(""); //set text menjadi kosong kembali
         passwordField.setText("");
+
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.navigateTo(HomeGUI.KEY);
     }
@@ -104,14 +106,13 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private void handleLogin() {
-        // nad cpt selesaiin
-        // baik
+        //mengambil isi dari object yang sudah dibuat
         String idString = idTextField.getText();
         char[] passwordChar = passwordField.getPassword();
         String passwordString = new String(passwordChar);
 
         MainFrame mainFrame = MainFrame.getInstance();
-        if (!mainFrame.login(idString, passwordString)){
+        if (!mainFrame.login(idString, passwordString)){ //mengecek jika user gagal login dan menampilkan pesan error
             JOptionPane.showMessageDialog(null, "ID atau password invalid",
                                                      "Invalid ID or Password", JOptionPane.ERROR_MESSAGE);
         } else {
