@@ -53,14 +53,15 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Menampilkan semua Nota yang ada pada sistem.
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
-    
+
+     //handle output dispkay nota employee
     private void displayNota() {
-        if (NotaManager.notaList.length == 0){
-            JOptionPane.showMessageDialog(null, "Belum ada nota:(",
+        if (NotaManager.notaList.length == 0){ //handle jika belum ada nota
+            JOptionPane.showMessageDialog(null, "Belum ada nota :(",
                                             "List Nota", JOptionPane.ERROR_MESSAGE);
         } else {
             String allNota = "";
-            for (Nota nota : NotaManager.notaList){
+            for (Nota nota : NotaManager.notaList){ //print semua nota status
                 allNota += "Nota "+nota.getIdNota()+" : "+nota.getNotaStatus()+"\n";
             }
             JOptionPane.showMessageDialog(null, allNota,
@@ -72,12 +73,12 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Menampilkan dan melakukan action mencuci.
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
-    private void cuci() {
+    private void cuci() { //mencetak status cuci
         JOptionPane.showMessageDialog(null, "Stand Back! "+loggedInMember.getNama()+" beginning to nyuci!",
                                                      "Nyuci Time...", JOptionPane.INFORMATION_MESSAGE);
         
 
-        if (NotaManager.notaList.length == 0){
+        if (NotaManager.notaList.length == 0){ //handle jika belum ada nota
             JOptionPane.showMessageDialog(null, "Nothing to cuci here :(",
                                             "Nyuci Results", JOptionPane.ERROR_MESSAGE);
         } else {
