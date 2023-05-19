@@ -76,7 +76,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
         }
         
         JOptionPane.showMessageDialog(null, detaillNota,
-                                        "Detail Nota", JOptionPane.ERROR_MESSAGE);
+                                        "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
         
 
     }
